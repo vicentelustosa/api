@@ -1,4 +1,3 @@
-from flask import abort
 from ..models.message import Message
 from .. import db
 
