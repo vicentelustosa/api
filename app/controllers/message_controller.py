@@ -4,19 +4,18 @@ from .. import db
 def listar_mensagens():
     return Message.query.all()
 
-def obter_mensagem_por_id(message_id):
-    # Por simplicidade, usamos get_or_404 neste projeto.
-    return Message.query.get_or_404(message_id)
+def obter_mensagem(message_id):
+    return Message.query.get(message_id)  # Retorna None se não encontrar
 
-def criar_mensagem(data):
-    nova_mensagem = Message(**data)
-    db.session.add(nova_mensagem)
+def criar_mensagem(dados):
+    nova = Message(**dados)
+    db.session.add(nova)
     db.session.commit()
-    return nova_mensagem
+    return nova
 
-def atualizar_mensagem(message, data):
-    for key, value in data.items():
-        setattr(message, key, value)
+def atualizar_mensagem(message, dados):
+    for chave, valor in dados.items():
+        setattr(message, chave, valor)
     db.session.commit()
     return message
 

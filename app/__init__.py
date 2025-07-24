@@ -44,6 +44,10 @@ def create_app():
 
     from .routes.messages import messages_bp
     app.register_blueprint(messages_bp, url_prefix="/messages")
+    from app.routes.comments import comments_bp
+    app.register_blueprint(comments_bp)
+    from app.routes.users import users_bp
+    app.register_blueprint(users_bp, url_prefix="/users")
     register_error_handlers(app)
 
     return app
